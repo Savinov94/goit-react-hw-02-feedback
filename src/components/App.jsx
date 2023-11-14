@@ -12,10 +12,11 @@ class App extends Component {
     bad: 0,
   };
 
-  handleClick = allButtons => () => {
-    this.setState(prevState => ({ [allButtons]: prevState[allButtons] + 1 }));
+  handleClick = buttonLabel => {
+    this.setState(prevState => ({
+      [buttonLabel.toLowerCase()]: prevState[buttonLabel.toLowerCase()] + 1,
+    }));
   };
-
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
@@ -35,7 +36,10 @@ class App extends Component {
     return (
       <div className={css.add}>
         <Section title="Please leave feedback">
-          <Buttons handleClick={this.handleClick} />
+          <Buttons
+            handleClick={this.handleClick}
+            options={['Good', 'Neutral', 'Bad']}
+          />
         </Section>
 
         <Section title="Statistics">

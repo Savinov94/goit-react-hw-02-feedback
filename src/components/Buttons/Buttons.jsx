@@ -1,17 +1,17 @@
 import css from './Buttons.module.css';
 
-const Buttons = ({ handleClick }) => {
+const Buttons = ({ handleClick, options }) => {
   return (
     <div className={css.buttonsContainer}>
-      <button className={css.button} onClick={handleClick('good')}>
-        Good
-      </button>
-      <button className={css.button} onClick={handleClick('neutral')}>
-        Neutral
-      </button>
-      <button className={css.button} onClick={handleClick('bad')}>
-        Bad
-      </button>
+      {options.map((option, id) => (
+        <button
+          key={id}
+          className={css.button}
+          onClick={() => handleClick(option)}
+        >
+          {option}
+        </button>
+      ))}
     </div>
   );
 };
